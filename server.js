@@ -9,6 +9,7 @@ const PORT = 3000;
 const CAMNamespace = 'Harmony LDAP';
 const CAMUsername = 'pm';
 const CAMPassword = 'IBMDem0s';
+const url_server = 'http://useast.services.cloud.techzone.ibm.com:42845'
 
 app.get('/', (req, res) => {
     res.send('Cognos Analytics Embedding Service is running!');
@@ -24,7 +25,7 @@ app.use(cors({
 
 
 async function authenticateCognos() {
-    const url = 'http://useast.services.cloud.techzone.ibm.com:42845/bi/v1/disp/rds/auth/logon'; // Asegúrate de que esta es la URL correcta
+    const url = url_server + '/bi/v1/disp/rds/auth/logon'; // Asegúrate de que esta es la URL correcta
     const xmlData = `<auth:credentials xmlns:auth='http://developer.cognos.com/schemas/ccs/auth/types/1'>
         <auth:credentialElements><auth:name>CAMNamespace</auth:name><auth:value><auth:actualValue>${process.env.COGNOS_NAMESPACE}</auth:actualValue></auth:value></auth:credentialElements>
         <auth:credentialElements><auth:name>CAMUsername</auth:name><auth:value><auth:actualValue>${process.env.COGNOS_USERNAME}</auth:actualValue></auth:value></auth:credentialElements>
@@ -99,7 +100,7 @@ app.get('/embed', async (req, res) => {
                         <i class="fas fa-credit-card"></i> Embedded Cognos
                     </div>
                     <div class="card-body">
-                        <iframe src="https://sigtest.mh.gob.sv/ibmcognos/dashboardPrueba/dashboardPrueba.html"></iframe>
+                        <iframe src="http://useast.services.cloud.techzone.ibm.com:42845/bi/?pathRef=.public_folders%2FSamples%2FReports%2FStandard%2Breports%2FEmployee%2Bexpenses&CAM_action=logonAs&format=HTML&Download=false&p_Glass.urlLogonParameters=CAMNamespace,CAMUsername,CAMPassword&CAMNamespace=Harmony LDAP&CAMUsername=pm&CAMPassword=IBMDem0s"></iframe>
                     </div>
                 </div>
             </div>
