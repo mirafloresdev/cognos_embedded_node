@@ -50,8 +50,7 @@ async function authenticateCognos() {
 
 
 app.get('/embed', async (req, res) => {
-    const authData = await authenticateCognos();
-    if (authData) {
+
         const htmlContent = `<!DOCTYPE html>
         <html>
         <head><title>Embedded Cognos Report</title>
@@ -100,10 +99,13 @@ app.get('/embed', async (req, res) => {
                         <i class="fas fa-credit-card"></i> Embedded Cognos
                     </div>
                     <div class="card-body">
-                        <iframe src="http://useast.services.cloud.techzone.ibm.com:42845/bi/?pathRef=.public_folders%2FSamples%2FReports%2FStandard%2Breports%2FEmployee%2Bexpenses&CAM_action=logonAs&format=HTML&Download=false&p_Glass.urlLogonParameters=CAMNamespace,CAMUsername,CAMPassword&CAMNamespace=Harmony LDAP&CAMUsername=pm&CAMPassword=IBMDem0s"></iframe>
+                        <iframe src="https://sigtest.mh.gob.sv/ibmcognos/dashboardPrueba/dashboardPrueba.html"></iframe>
                     </div>
                 </div>
             </div>
+            
+            //sustituir url con la prueba a realizar
+            
             <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         
           
@@ -112,9 +114,7 @@ app.get('/embed', async (req, res) => {
         </body>
         </html>`;
         res.send(htmlContent);
-    } else {
-        res.status(401).send('Authentication failed');
-    }
+
 });
 
 
